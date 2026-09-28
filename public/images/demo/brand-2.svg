@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" width="480" height="240">
+<defs>
+<linearGradient id="g63" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#1d3a32"/>
+<stop offset="1" stop-color="#112823"/>
+</linearGradient>
+</defs>
+<rect width="480" height="240" fill="url(#g63)"/>
+<rect x="14" y="14" width="452" height="212" fill="none" stroke="#FAF5F0" stroke-opacity="0.25" stroke-width="1.5"/><rect x="20" y="20" width="440" height="200" fill="none" stroke="#EDBE77" stroke-opacity="0.35" stroke-width="1"/><text x="226.0" y="136.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="62" fill="#FAF5F0" opacity="0.95">Flora</text><text x="336.0" y="134.0" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="58" fill="#EDBE77" opacity="0.95">+</text>
+<rect x="202" y="214" width="77" height="2" fill="#EDBE77" opacity="0.55"/>
+</svg>

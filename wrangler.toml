@@ -1,0 +1,39 @@
+name = "wanxu-cms"
+main = "src/index.ts"
+compatibility_date = "2025-09-20"
+compatibility_flags = ["nodejs_compat"]
+
+# 站点根 URL，用于 canonical / hreflang / sitemap 拼接
+# 后台访问入口路径，默认 /admin；可改为 /manage 等，增强安全性
+# GEO_REDIRECT: 是否根据访问者 IP 国家自动跳转首页语言，默认 true（中国→/zh，其它→/en）
+# DEV_CHALLENGE_SECRET / DEV_CHALLENGE_ANSWER: 修改开发者联系方式时的验证密钥与答案
+# 部署时由 CI/CD 通过环境变量替换，避免把真实配置写入仓库
+[vars]
+SITE_URL = "__SITE_URL__"
+ADMIN_PATH = "__ADMIN_PATH__"
+GEO_REDIRECT = "__GEO_REDIRECT__"
+DEV_CHALLENGE_SECRET = "__DEV_CHALLENGE_SECRET__"
+DEV_CHALLENGE_ANSWER = "__DEV_CHALLENGE_ANSWER__"
+
+# 询盘邮件通知（可选）：本地开发写入 .dev.vars，线上用 wrangler secret put 配置
+# EMAIL_API_URL = "https://api.resend.com/emails"   # 通用 JSON Webhook（Resend / 自建转发均可）
+# EMAIL_API_TOKEN = "re_xxxxxxxx"                  # Bearer 令牌，按服务商要求
+# EMAIL_FROM = "no-reply@your-domain.com"          # 缺省 no-reply@SITE_URL 域名
+
+# 静态资源（前台 css/js/favicon + 管理后台 SPA）
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# D1 数据库绑定
+# 部署时由 CI/CD 通过 DATABASE_ID 环境变量替换，避免把真实 ID 写入仓库
+[[d1_databases]]
+binding = "DB"
+database_name = "wanxu_cms"
+database_id = "__DATABASE_ID__"
+
+# R2 存储桶绑定
+# 部署时由 CI/CD 通过 R2_BUCKET_NAME 环境变量替换，避免把真实桶名写入仓库
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "__R2_BUCKET_NAME__"

@@ -1,0 +1,18 @@
+# 晚叙 CMS 本地开发环境变量示例
+# 复制为 .dev.vars 后填写（.dev.vars 已加入 .gitignore，勿提交）
+#
+# 初始管理员：用户名 admin  密码 Admin@12345（实际生效的是 db/seed.sql 中的 PBKDF2 哈希，首登后请在数据库中更换）
+ADMIN_INITIAL_PASSWORD=Admin@12345
+
+# ---- 开发者验证（修改开发者联系方式时使用）----
+# 线上部署请务必修改默认值，避免被猜测；本地开发可留空使用随机默认串
+DEV_CHALLENGE_SECRET=your-random-secret-min-32-chars-long
+DEV_CHALLENGE_ANSWER=your-private-answer-here
+
+# ---- 邮件服务（询盘通知 + 密码找回，不配置则仅入库不发邮件）----
+# 本项目使用通用 HTTP 邮件 Webhook：Worker POST JSON {from,to[],subject,html,text} 到网关，网关负责实际发信。
+# 如果你使用 mxroute / 其他 SMTP 服务，请自建一个 HTTP→SMTP 转发网关（见 docs/DEPLOY.md 示例脚本）。
+# 本地开发可留空，或使用测试网关（如 Mailpit HTTP API）。
+EMAIL_API_URL=
+EMAIL_API_TOKEN=
+EMAIL_FROM=no-reply@example.com

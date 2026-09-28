@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" width="480" height="240">
+<defs>
+<linearGradient id="g67" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#233c2c"/>
+<stop offset="1" stop-color="#142318"/>
+</linearGradient>
+</defs>
+<rect width="480" height="240" fill="url(#g67)"/>
+<rect x="14" y="14" width="452" height="212" fill="none" stroke="#FAF5F0" stroke-opacity="0.25" stroke-width="1.5"/><rect x="20" y="20" width="440" height="200" fill="none" stroke="#EDBE77" stroke-opacity="0.35" stroke-width="1"/><text x="220.0" y="136.0" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="54" fill="#FAF5F0" opacity="0.95">Bio</text><text x="306.0" y="136.0" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="54" fill="#EDBE77" opacity="0.95">Green</text><g transform="translate(112 112) rotate(-30)"><path d="M0 0 C 10 -14, 32 -14, 42 0 C 32 14, 10 14, 0 0 Z" fill="#FAF5F0" opacity="0.55"/></g>
+<rect x="202" y="214" width="77" height="2" fill="#EDBE77" opacity="0.55"/>
+</svg>

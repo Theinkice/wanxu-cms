@@ -1,0 +1,59 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_ID: ${{ secrets.DATABASE_ID }}
+      R2_BUCKET_NAME: ${{ secrets.R2_BUCKET_NAME }}
+      SITE_URL: ${{ secrets.SITE_URL }}
+      ADMIN_PATH: ${{ secrets.ADMIN_PATH }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      GEO_REDIRECT: ${{ secrets.GEO_REDIRECT }}
+      DEV_CHALLENGE_SECRET: ${{ secrets.DEV_CHALLENGE_SECRET }}
+      DEV_CHALLENGE_ANSWER: ${{ secrets.DEV_CHALLENGE_ANSWER }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Replace wrangler.toml placeholders
+        run: node scripts/replace-wrangler-placeholders.mjs
+
+      - name: Type check
+        run: npm run build
+
+      - name: Ensure R2 bucket exists
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: r2 bucket create ${{ secrets.R2_BUCKET_NAME }}
+        # 桶已存在时会报错，这里忽略该错误继续部署
+        continue-on-error: true
+
+      - name: Ensure remote database schema & seed
+        run: node scripts/init-remote-db.mjs
+
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

@@ -1,0 +1,25 @@
+{
+  "name": "wanxu-cms",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "晚叙 CMS — 外贸企业官网与内容管理系统（Cloudflare Workers + Hono + D1 + R2）",
+  "scripts": {
+    "dev": "wrangler dev",
+    "build": "tsc --noEmit",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 execute wanxu_cms --local --file=db/schema.sql && wrangler d1 execute wanxu_cms --local --file=db/seed.sql",
+    "db:remote": "wrangler d1 execute wanxu_cms --remote --file=db/schema.sql && wrangler d1 execute wanxu_cms --remote --file=db/seed.sql"
+  },
+  "dependencies": {
+    "hono": "^4.9.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250913.0",
+    "typescript": "^5.6.0",
+    "wrangler": "4.30.0"
+  },
+  "optionalDependencies": {
+    "@cloudflare/workerd-windows-64": "^1.20250813.0"
+  }
+}

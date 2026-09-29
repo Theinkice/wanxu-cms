@@ -49,8 +49,6 @@ npm run dev          # http://localhost:8787
 
 ## 通过 GitHub 部署到 Cloudflare Workers
 
-本仓库已过滤 `node_modules/`、`.wrangler/`、`.dev.vars` 等无需上传的文件，可直接推送到 GitHub 并关联 Cloudflare 自动部署。完整环境变量 / 邮件通知 / 自定义域名 / 故障排查说明见 **[docs/DEPLOY.md](docs/DEPLOY.md)**。
-
 ### 1. 初始化 GitHub 仓库并推送
 
 ```bash
